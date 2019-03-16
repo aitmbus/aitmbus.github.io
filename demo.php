@@ -1,47 +1,41 @@
 <?php
-use Kreait\Firebase;
-
-$firebase = (new Firebase\Factory())->create();
-$database = $firebase->getDatabase();
-
-$db->getReference('config/website')
-    ->set([
-        'name' => 'My Application',
-        'emails' => [
-            'support' => 'support@domain.tld',
-            'sales' => 'sales@domain.tld',
-        ],
-        'website' => 'https://app.domain.tld',
-    ]);
-
-$db->getReference('config/website/name')->set('New name');
-
-
-
-
-
-
 $deviceId = $_GET["d"];
 $latitude = $_GET["la"];
 $longitude= $_GET["ln"];
 
-$uname="id8910287_root";
-$ser="localhost";
-$pass="rootroot";
-$db="id8910287_bs";
-$t=date("Y-m-d H:m:s",time());
-$conn=mysqli_connect($ser,$uname,$pass,$db) or die("no conn");
-$q="select * from bus";
-$res=mysqli_query($conn,$q) or die('no data sent');
-if(mysqli_num_rows($res)>0){
-	while($row=mysqli_fetch_array($res)){
-		echo $row['d'];
-		echo $row['la'];
-		echo $row['ln'];
-		echo $row['time'];
-	}
-}
+
 echo $latitude ;
 echo $longitude;
 
 ?>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+
+var latitude='<?=$_POST['la']?>';
+var longitude='<?=$_POST['ln']?>';
+document.write(latitude);
+document.write(longitude);
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyARcmtv2AxUR7PcwsV3fCD2kD-p4vgUym4",
+    authDomain: "abus-b1c9c.firebaseapp.com",
+    databaseURL: "https://abus-b1c9c.firebaseio.com",
+    projectId: "abus-b1c9c",
+    storageBucket: "abus-b1c9c.appspot.com",
+    messagingSenderId: "391065252444"
+  };
+  firebase.initializeApp(config);
+
+  
+  var database = firebase.database();
+  
+  firebase.database().ref('/bus/1/').set({
+    lat: latitude,
+    lng: longitude
+  });
+
+
+</script>
