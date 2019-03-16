@@ -13,8 +13,8 @@ echo $longitude;
 <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
 <script>
 
-var latitude='<?=$_POST['la']?>';
-var longitude='<?=$_POST['ln']?>';
+var latitude=1111;
+var longitude=2222;
 document.write(latitude);
 document.write(longitude);
 
